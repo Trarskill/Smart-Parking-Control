@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking Control</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="tailwind.config.js"></script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            /* Клас для навігаційних посилань */
+            .nav-link {
+                @apply text-graphite-dark hover:text-graphite-dark-blue transition-colors;
+            }
+            .nav-link-active {
+                @apply text-graphite-dark-blue border-b-2 border-mint pb-1;
+            }
+
+            /* Базовий контейнер паркомісця (всі структурні налаштування) */
+            .spot-card-free {
+                @apply flex flex-col items-center w-fit h-fit bg-graphite-very-light border-mint-dark border-4 rounded-[2px] overflow-hidden;
+            }
+            
+            .spot-card-occupied {
+                @apply flex flex-col items-center w-fit h-fit bg-graphite-very-light border-graphite-dark border-4 rounded-[2px] overflow-hidden;
+            }
+            /* Блок із текстом */
+            .spot-label {
+                @apply w-fit h-fit text-body text-graphite-dark-blue py-0.5;
+            }
+            
+            /* Контейнер для картинки */
+            .spot-img-wrapper {
+                @apply w-full h-fit border-t-4 flex justify-center;
+            }
+            
+            /* Сама картинка */
+            .spot-img {
+                @apply w-full object-cover;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="bg-graphite text-graphite-dark-blue font-sans min-h-screen">
+
+    <header class="w-full h-auto md:h-fill bg-graphite-very-light flex flex-col md:flex-row justify-between items-center px-4 lg:px-48 py-4 md:py-6 gap-4 md:gap-0 shadow-md">
+    
+        <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-graphite-dark-blue shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="text-lg md:text-[24px] font-bold text-graphite-dark-blue leading-tight text-center">Smart
+                Parking Control</span>
+        </div>
+
+        <nav class="flex items-center gap-8 font-medium">
+            <a href="index.html" class="nav-link">Statistics</a>
+            <a href="map.html" class="nav-link-active">Parking Map</a>
+            <a href="about.html" class="nav-link">About us</a>
+        </nav>
+
+    </header>
+
+    <main class="w-full min-h-screen bg-graphite-light px-0 py-4 md:p-4 shadow-md">
+
+        <div class="w-full max-w-[1200px] min-h-screen bg-graphite-very-light mx-auto rounded-lg shadow-none px-0 py-6 md:p-8 border-y md:border border-graphite-very-light">
+
+            <div class="text-center mb-4 px-4 md:px-0">
+                <h1 class="text-3xl font-bold text-graphite-dark-blue mb-2">Карта секторів паркінга</h1>
+                <p class="text-graphite-dark text-sm">Система працює стабільно. Оновлено: 1 хв. тому</p>
+            </div>
+
+            <div class="bg-graphite-light shadow-md rounded-lg p-4 md:p-6 mx-4 md:mx-0 border border-graphite-light">
+
+                <h2 class="text-graphite-dark-blue font-bold mb-4">Схема зайнятих секторів</h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-2 md:gap-3">
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> A-01 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> A-02 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> A-03 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> A-04 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> A-05 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> A-06 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> A-07 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> A-08 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> A-09 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">             
+                        </div>
+                    </article>
+                    
+                    <article class="spot-card-free">
+                        <div class="spot-label"> A-10 </div>
+                        <div class="spot-img-wrapper border-mint-dark"> 
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img"> 
+                        </div>
+                    </article>
+
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-01 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> B-02 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-03 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-04 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-05 </div>
+                        <div class="spot-img-wrapper border-mint-dark"> 
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img"> 
+                        </div>
+                    </article>
+                    
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> B-06 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> B-07 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-08 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-free">
+                        <div class="spot-label"> B-09 </div>
+                        <div class="spot-img-wrapper border-mint-dark">
+                            <img src="assets/img/free_place.png" alt="Free Place" class="spot-img">
+                        </div>
+                    </article>
+
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> B-10 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">             
+                        </div>
+                    </article>
+                    
+                    <article class="spot-card-occupied">
+                        <div class="spot-label"> B-11 </div>
+                        <div class="spot-img-wrapper border-graphite-dark">
+                            <img src="assets/img/car_parking.png" alt="Occupied Place" class="spot-img">             
+                        </div>
+                    </article>
+
+
+
+                </div>
+            </div>
+    </main>
+</body>
+</html>

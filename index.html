@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking Control - Statistics</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="tailwind.config.js"></script>
+    
+    <style type="text/tailwindcss">
+        @layer components {
+            /* Клас для навігаційних посилань */
+            .nav-link {
+                @apply text-graphite-dark hover:text-graphite-dark-blue transition-colors;
+            }
+            .nav-link-active {
+                @apply text-graphite-dark-blue border-b-2 border-mint pb-1;
+            }
+
+            /* Клас для карток-віджетів */
+            .widget-card {
+                @apply flex-1 min-w-max flex items-center gap-4 p-4 bg-mint shadow-md rounded-lg max-w-[280px] w-full md:w-auto;
+            }
+            
+            /* Клас для іконки всередині віджета */
+            .widget-icon-wrapper {
+                @apply w-[50px] h-[50px] bg-mint-very-light rounded-[12px] shadow-lg flex items-center justify-center overflow-hidden;
+            }
+
+            /* Класи для назви та значення віджета*/
+            .widget-title {
+                @apply whitespace-nowrap text-item-text text-graphite-dark font-medium uppercase tracking-wide;
+            }
+            .widget-value {
+                @apply text-3xl font-bold  text-item-numbers text-graphite-dark-blue leading-none mt-1;
+            }
+            /* Розділення клолонок віджета */
+            .widget-icon-column {
+                @apply flex items-center justify-center shrink-0 h-full;
+            }
+            .widget-info-column {
+                @apply flex flex-col items-start flex-1 w-full py-1;
+            }
+
+            /* Статуси для таблиці */
+            .status-badge-in {
+                @apply inline-block px-2 py-1 bg-mint-very-dark text-white rounded text-[10px] uppercase tracking-wider font-bold;
+            }
+            .status-badge-out {
+                @apply inline-block px-2 py-1 bg-graphite-dark text-white rounded text-[10px] uppercase tracking-wider font-bold;
+            }
+
+            /* Стилі для пагінації */
+            .page-btn {
+                @apply w-8 h-8 flex items-center justify-center bg-white border border-graphite-light rounded shadow-sm text-pagination text-graphite-dark hover:bg-graphite-very-light transition-colors;
+            }
+            .page-btn-active {
+                @apply w-8 h-8 flex items-center justify-center bg-mint-very-dark text-white border border-graphite-dark-blue rounded text-pagination font-bold shadow-sm;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="bg-graphite text-graphite-dark-blue font-sans min-h-screen">
+
+    <header class="w-full h-auto md:h-fill bg-graphite-very-light flex flex-col md:flex-row justify-between items-center px-4 lg:px-48 py-4 md:py-6 gap-4 md:gap-0 shadow-md">
+       
+        <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-graphite-dark-blue shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="text-lg md:text-[24px] font-bold text-graphite-dark-blue leading-tight text-center">Smart Parking Control</span>
+        </div>
+
+        <nav class="flex items-center gap-8 font-medium">
+            <a href="index.html" class="nav-link-active">Statistics</a>
+            <a href="map.html" class="nav-link">Parking Map</a>
+            <a href="about.html" class="nav-link">About us</a>
+        </nav>
+        
+    </header>
+
+    <main class="w-full min-h-screen bg-graphite-light px-0 py-4 md:p-4 shadow-md">  
+
+        <div class="w-full max-w-[1200px] bg-graphite-very-light mx-auto rounded-lg shadow-md p-4 md:p-8 border border-graphite-very-light">
+            
+            <div class="text-center mb-4 px-4 md:px-0">
+                <h1 class="text-3xl font-bold text-graphite-dark-blue mb-2">Панель статистики секторів паркінга</h1>
+                <p class="text-graphite-dark text-sm">Система працює стабільно. Оновлено: 1 хв. тому</p>
+            </div>
+        
+        <!-- ВІДЖЕТИ -->
+        <section class="flex flex-wrap justify-center gap-6 mb-10">
+
+            <article class="widget-card">
+                <main class="widget-icon-column">
+                    <div class="widget-icon-wrapper">
+                        <img src="assets/icons/car.png" alt="Car Icon" class="w-10 h-10 object-contain">
+                    </div>
+                </main>
+                <div class="widget-info-column">
+                    <span class="widget-title">Загальна кількість місць</span>
+                    <span class="widget-value">55</span>
+                </div>
+            </article>
+
+            <article class="widget-card">
+                <main class="widget-icon-column">
+                    <div class="widget-icon-wrapper">
+                        <img src="assets/icons/check.png" alt="Check Icon" class="w-10 h-10 object-contain">
+                    </div>
+                </main>
+                <div class="widget-info-column">
+                    <span class="widget-title">Вільних місць на разі</span>
+                    <span class="widget-value">26</span>
+                </div>
+            </article>
+
+            <article class="widget-card">
+                <main class="widget-icon-column">
+                    <div class="widget-icon-wrapper">
+                        <img src="assets/icons/clock.png" alt="Clock Icon" class="w-10 h-10 object-contain">
+                    </div>
+                </main>
+                <div class="widget-info-column">
+                    <span class="widget-title">Середній час перебування</span>
+                    <span class="widget-value">2год 22хв</span>
+                </div>
+            </article>
+
+            <article class="widget-card">
+                <main class="widget-icon-column">
+                    <div class="widget-icon-wrapper">
+                        <img src="assets/icons/arrow.png" alt="Chart Icon" class="w-10 h-10 object-contain"> </div>
+                </main>
+                <div class="widget-info-column">
+                    <span class="widget-title">Заповненість сектора</span>
+                    <span class="widget-value">52,73%</span>
+                </div>
+            </article>
+        </section>
+        
+        <!-- ЛОГ НОМЕРІВ -->
+        <section class="bg-mint-light rounded-lg p-4 md:p-6 w-full overflow-hidden">
+
+            <h2 class="text-lg font-bold text-graphite-dark-blue mb-2 px-2">Останні події</h2>
+
+                <div class="bg-mint rounded shadow-md p-0 md:p-2 min-h-[300px]">
+
+                    <div class="overflow-x-auto w-full p-2 md:p-0">
+                        <table class="w-full min-w-[420px] text-left text-sm text-graphite-dark-blue border-collapse">
+                            <thead>
+                                <tr class="text-graphite-dark border-b border-graphite">
+                                    <th class="text-log-title px-4 py-3">Номер</th>
+                                    <th class="text-log-title px-4 py-3">Сектор</th>
+                                    <th class="text-log-title px-4 py-3">Час</th>
+                                    <th class="text-log-title px-4 py-3">Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-body px-4 py-2">AA 0214 AB</td>
+                                    <td class="text-body px-4 py-2">A-12</td>
+                                    <td class="text-body px-4 py-2">14:24</td>
+                                    <td class="text-body px-4 py-2 whitespace-nowrap">
+                                        <span class="status-badge-in">В'їзд</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body px-4 py-2">AE 5566 AX</td>
+                                    <td class="text-body px-4 py-2">A-05</td>
+                                    <td class="text-body px-4 py-3">14:09</td>
+                                    <td class="text-body px-4 py-2 whitespace-nowrap">
+                                        <span class="status-badge-out">Виїзд</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ПАГІНАЦІЯ -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-2 mt-4">
+                    <button class="page-btn"><</button>
+                    <button class="page-btn-active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <span class="page-btn cursor-default hover:bg-white">...</span>
+                    <button class="page-btn">10</button>
+                    <button class="page-btn">></button>
+                </div>
+
+            </section>
+        </div>
+    </main>
+</body>
+</html>
