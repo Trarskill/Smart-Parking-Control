@@ -1,4 +1,4 @@
-tailwind.config = {
+const customConfig = {
     theme: {
         extend: {
             colors: {
@@ -20,24 +20,23 @@ tailwind.config = {
                     'very-dark': '#3D7A43',
                 }
             },
-            fontFamily: {
-                sans: ['Poppins', 'sans-serif'],
-            },
             fontSize: {
-                'h1': ['24px', 'normal'],       // Для головних заголовків
-                'h2': ['18px', 'normal'],       // Для підзаголовків та меню
-                'body': ['14px', 'normal'],     // Для звичайного тексту
-                'log-title': ['14px', 'normal'], // Для заголовків таблиці
-                'pagination': ['12px', '1'],    // Для кнопок сторінок (12px, 100%)
-                'item-text': ['11px', { 
-                    lineHeight: '1.24',
-                    letterSpacing: '0em'
-                }],// Для підписів у віджетах (11px, 124%)
-                'item-numbers': ['32px', { 
-                    lineHeight: 'normal',
-                    letterSpacing: '-0.01em' 
-                }],// Для великих цифр у віджетах
+                'h1': ['24px', 'normal'],           // Для головних заголовків
+                'h2': ['18px', 'normal'],           // Для підзаголовків та меню
+                'body': ['14px', 'normal'],         // Для звичайного тексту
+                'log-title': ['14px', 'normal'],    // Для заголовків таблиці
+                'pagination': ['12px', '1'],        // Для кнопок сторінок (12px, 100%)
+                'item-text': ['11px', { lineHeight: '1.24', letterSpacing: '0em' }],            // Для підписів у віджетах (11px, 124%)
+                'item-numbers': ['32px', { lineHeight: 'normal', letterSpacing: '-0.01em' }],   // Для великих цифр у віджетах
             }
         }
     }
+};
+// VS Code (Node.js)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = customConfig;
+} 
+// (CDN)
+else {
+    tailwind.config = customConfig;
 }

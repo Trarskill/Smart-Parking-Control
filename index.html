@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+<link rel="icon" href="assets/icons/car.png" type="image/png">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,6 +81,13 @@
             <a href="index.html" class="nav-link-active">Statistics</a>
             <a href="map.html" class="nav-link">Parking Map</a>
             <a href="about.html" class="nav-link">About us</a>
+            
+            <button id="open-settings-btn" class="nav-link font-medium cursor-pointer" title="Settings">
+                <svg class="w-6 h-6 text-mint-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </button>
         </nav>
         
     </header>
@@ -88,10 +96,10 @@
 
         <div class="w-full max-w-[1200px] bg-graphite-very-light mx-auto rounded-lg shadow-md p-4 md:p-8 border border-graphite-very-light">
             
-            <div class="text-center mb-4 px-4 md:px-0">
-                <h1 class="text-3xl font-bold text-graphite-dark-blue mb-2">Панель статистики секторів паркінга</h1>
-                <p class="text-graphite-dark text-sm">Система працює стабільно. Оновлено: 1 хв. тому</p>
-            </div>
+        <div class="text-center mb-4 px-4 md:px-0">
+            <h1 class="text-3xl font-bold text-graphite-dark-blue mb-2">Панель статистики секторів паркінга</h1>
+            <p id="last-update-time" class="text-graphite-dark text-sm">Система працює стабільно. Оновлено: 0 сек. тому</p>
+        </div>
         
         <!-- ВІДЖЕТИ -->
         <section class="flex flex-wrap justify-center gap-6 mb-10">
@@ -104,7 +112,7 @@
                 </main>
                 <div class="widget-info-column">
                     <span class="widget-title">Загальна кількість місць</span>
-                    <span class="widget-value">55</span>
+                    <span id="total-spots" class="widget-value">55</span>
                 </div>
             </article>
 
@@ -116,7 +124,7 @@
                 </main>
                 <div class="widget-info-column">
                     <span class="widget-title">Вільних місць на разі</span>
-                    <span class="widget-value">26</span>
+                    <span id="available-spots" class="widget-value">loading..</span>
                 </div>
             </article>
 
@@ -128,7 +136,7 @@
                 </main>
                 <div class="widget-info-column">
                     <span class="widget-title">Середній час перебування</span>
-                    <span class="widget-value">2год 22хв</span>
+                    <span id="avg-time" class="widget-value">loading..</span>
                 </div>
             </article>
 
@@ -139,7 +147,7 @@
                 </main>
                 <div class="widget-info-column">
                     <span class="widget-title">Заповненість сектора</span>
-                    <span class="widget-value">52,73%</span>
+                    <span id="occupancy-rate" class="widget-value">loading..</span>
                 </div>
             </article>
         </section>
@@ -161,20 +169,12 @@
                                     <th class="text-log-title px-4 py-3">Статус</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-body px-4 py-2">AA 0214 AB</td>
-                                    <td class="text-body px-4 py-2">A-12</td>
-                                    <td class="text-body px-4 py-2">14:24</td>
-                                    <td class="text-body px-4 py-2 whitespace-nowrap">
-                                        <span class="status-badge-in">В'їзд</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-body px-4 py-2">AE 5566 AX</td>
-                                    <td class="text-body px-4 py-2">A-05</td>
-                                    <td class="text-body px-4 py-3">14:09</td>
-                                    <td class="text-body px-4 py-2 whitespace-nowrap">
+                            <tbody id="log-table-body">
+                                <tr class="border-b border-mint-dark/20 hover:bg-white/30 transition-colors">
+                                    <td class="text-body px-4 py-3 font-medium">AE 5566 AX</td>
+                                    <td class="text-body px-4 py-3">A-05</td>
+                                    <td class="text-body px-4 py-3 text-graphite-dark">14:09:30</td>
+                                    <td class="text-body px-4 py-3 whitespace-nowrap">
                                         <span class="status-badge-out">Виїзд</span>
                                     </td>
                                 </tr>
@@ -198,5 +198,36 @@
             </section>
         </div>
     </main>
+
+    <div id="settings-modal" class="fixed inset-0 bg-graphite-dark-blue/50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-[400px]">
+            <h2 class="text-xl font-bold text-graphite-dark-blue mb-4">Налаштування системи</h2>
+            <form id="settings-form" class="flex flex-col gap-4">
+                <div>
+                    <label class="block text-sm text-graphite-dark mb-1">Кількість місць парковки (10-99):</label>
+                    <input type="number" id="setting-total-spots" min="10" max="99" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                </div>
+                <div>
+                    <label class="block text-sm text-graphite-dark mb-1">Швидкість симуляції (сек):</label>
+                    <input type="number" id="setting-sim-speed" min="2" max="60" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                </div>
+                <div id="settings-msg" class="text-sm font-medium hidden text-center"></div>
+                
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" id="close-settings-btn" class="px-4 py-2 rounded border border-graphite-light text-graphite-dark hover:bg-graphite-very-light transition-colors">Скасувати</button>
+                    <button type="submit" class="px-4 py-2 rounded bg-mint-dark text-white font-bold hover:bg-mint-very-dark transition-colors">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/randomUtils.js"></script>
+
+    <script src="js/mapHandlers.js"></script>
+    
+    <script src="js/script.js"></script>
+
+    <script src="js/settings.js"></script>
+
 </body>
 </html>
