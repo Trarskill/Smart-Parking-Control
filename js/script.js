@@ -99,9 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const occupiedSpots = TOTAL - currentAvailable;
             const occupancyPercentage = ((occupiedSpots / TOTAL) * 100).toFixed(2);
             
-            if (!avgTimeEl.dataset.initialized) {
-                avgTimeEl.textContent = ` ${getRandomInt(10, 40)}хв`;
-                avgTimeEl.dataset.initialized = "true";
+            // Тепер час генерується заново при кожному виклику renderStats()
+            if (avgTimeEl) {
+                avgTimeEl.textContent = `${getRandomInt(10, 40)}хв`;
             }
 
             if(totalSpotsEl) totalSpotsEl.textContent = TOTAL;

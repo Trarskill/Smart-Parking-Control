@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newSpeed = parseInt(speedInput.value, 10);
 
         // Валідація введених даних
-        if (isNaN(newSpots) || newSpots < 10 || newSpots > 99) {
-            showMsg('Помилка: Кількість місць (10 - 99)', 'text-red-500');
+        if (isNaN(newSpots) || newSpots < 21 || newSpots > 99) {
+            showMsg('Помилка: Кількість місць (21 - 99)', 'text-red-500');
             return;
         }
         if (isNaN(newSpeed) || newSpeed < 2 || newSpeed > 60) {

@@ -40,8 +40,14 @@
             <a href="index.html" class="nav-link">Statistics</a>
             <a href="map.html" class="nav-link">Parking Map</a>
             <a href="about.html" class="nav-link-active">About us</a>
+                    
+            <button id="open-settings-btn" class="nav-link font-medium cursor-pointer" title="Settings">
+            <svg class="w-6 h-6 text-mint-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+        </button>
         </nav>
-        
     </header>
    
     <main class="w-full min-h-screen bg-graphite-light px-0 py-4 md:p-4 shadow-md"> 
@@ -72,6 +78,37 @@
 
         </div>
     </main>
+
+    <div id="settings-modal" class="fixed inset-0 bg-graphite-dark-blue/50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-[400px]">
+            <h2 class="text-xl font-bold text-graphite-dark-blue mb-4">Налаштування системи</h2>
+            <form id="settings-form" class="flex flex-col gap-4">
+                <div>
+                    <label class="block text-sm px-1 text-graphite-dark mb-1">Кількість місць парковки (21-99):</label>
+                    <input type="number" id="setting-total-spots" min="21" max="99" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                </div>
+                <div>
+                    <label class="block text-sm px-1 text-graphite-dark mb-1">Швидкість симуляції (сек):</label>
+                    <input type="number" id="setting-sim-speed" min="2" max="60" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                     <label class="block text-xs px-1 text-graphite-dark graphite-dark mb-1">(максимум 1 хвилина)</label>
+                </div>
+                <div id="settings-msg" class="text-sm font-medium hidden text-center"></div>
+                
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" id="close-settings-btn" class="px-4 py-2 rounded border border-graphite-light text-graphite-dark hover:bg-graphite-very-light transition-colors">Скасувати</button>
+                    <button type="submit" class="px-4 py-2 rounded bg-mint-dark text-white font-bold hover:bg-mint-very-dark transition-colors">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/randomUtils.js"></script>
+
+    <script src="js/mapHandlers.js"></script>
+    
+    <script src="js/script.js"></script>
+
+    <script src="js/settings.js"></script>
 </body>
 </html>
 

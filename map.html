@@ -254,12 +254,13 @@
             <h2 class="text-xl font-bold text-graphite-dark-blue mb-4">Налаштування системи</h2>
             <form id="settings-form" class="flex flex-col gap-4">
                 <div>
-                    <label class="block text-sm text-graphite-dark mb-1">Кількість місць парковки (10-99):</label>
-                    <input type="number" id="setting-total-spots" min="10" max="99" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                    <label class="block text-sm px-1 text-graphite-dark mb-1">Кількість місць парковки (21-99):</label>
+                    <input type="number" id="setting-total-spots" min="21" max="99" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
                 </div>
                 <div>
-                    <label class="block text-sm text-graphite-dark mb-1">Швидкість симуляції (сек):</label>
+                    <label class="block text-sm px-1 text-graphite-dark mb-1">Швидкість симуляції (сек):</label>
                     <input type="number" id="setting-sim-speed" min="2" max="60" class="w-full border border-graphite-light rounded px-3 py-2 text-graphite-dark-blue outline-none focus:border-mint-dark" required>
+                     <label class="block text-xs px-1 text-graphite-dark graphite-dark mb-1">(максимум 1 хвилина)</label>
                 </div>
                 <div id="settings-msg" class="text-sm font-medium hidden text-center"></div>
                 
